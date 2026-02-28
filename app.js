@@ -158,4 +158,7 @@ app.post('/recommend', (req, res) => {
     res.json({ text, buttons });
 });
 
-app.listen(3001, () => console.log('Server running on http://localhost:3001'));
+const PORT = process.env.PORT || 3000;  // Render가 PORT 환경변수 자동으로 줌 (보통 10000번대)
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
