@@ -96,67 +96,26 @@ app.post('/recommend', (req, res) => {
     ? '\n※ 성향 키워드 매칭 결과가 없어 연봉순위 기준으로 최상위 직업을 추천하였습니다.'
     : '';
 
-  const text = `
-<div style="font-family:'Noto Sans KR',sans-serif; line-height:1.45; color:#2d2250; font-size:15px; padding:0; margin:0;">
-  <h2 style="font-size:18px; font-weight:900; color:#2d2250; margin:0 0 10px 0; padding:0;">1. 출력 결과</h2>
+  // ==================== 여기만 수정됨 ====================
+  const text = `1. 출력 결과
 
-  <p style="margin:4px 0; font-size:15px;"><b>성명:</b> ${name}</p>
-  <p style="margin:4px 0; font-size:15px;"><b>국가:</b> ${country} / <b>취업시기:</b> ${period}</p>
-  <p style="margin:8px 0 4px 0; font-size:16px; font-weight:700; color:#4f46e5;"><b>추천직업:</b> ${best['추천직업']}</p>
-  <p style="margin:4px 0; font-size:14.5px;"><b>연봉순위:</b> ${period} ${country},"지능/성적/노력"을 고려한 20개 해당 직종 중 ${best['연봉순위']}위에 해당됩니다.</p>
+성명: ${name}
+국가: ${country} / 취업시기: ${period}
+추천직업: ${best['추천직업']}
+연봉순위: ${period} ${country},"지능/성적/노력"을 고려한 20개 해당 직종 중 ${best['연봉순위']}위에 해당됩니다.
+직업해설: ${best['직업해설']}
+핵심 전문지식: ${best['핵심 전문지식']}
+추천 학과/전공: ${best['추천 학과/전공']}
+준비 기간: ${best['준비 기간']}
 
-  <p style="margin:12px 0 4px 0; font-size:15px;"><b>직업해설:</b><br>${best['직업해설']}</p>
-  <p style="margin:8px 0 4px 0; font-size:15px;"><b>핵심 전문지식:</b><br>${best['핵심 전문지식']}</p>
-  <p style="margin:8px 0 4px 0; font-size:15px;"><b>추천 학과/전공:</b><br>${best['추천 학과/전공']}</p>
-  <p style="margin:8px 0; font-size:15px;"><b>준비 기간:</b> ${best['준비 기간']}</p>
+2. 매칭 분석
 
-  <h2 style="font-size:18px; font-weight:900; color:#2d2250; margin:20px 0 10px 0; padding:0;">2. 매칭 분석</h2>
+조건 필터링: 국가, 시기, 등급 데이터를 기반으로 1차 후보군 ${candidateCount}개를 추출하였습니다.
+성향 점수화: 직업흥미유형(RIASEC) 적합도 ${best.riasec_score.toFixed(1)}점, 개인성향(Big5) 적합도 ${best.big5_score.toFixed(1)}점을 60:40 가중평균하여 최종 적합도 ${best.final_score}점을 산출하였습니다.
+최종 선택: 적합도 점수와 연봉순위를 종합하여 최적의 직업 1종을 선정하였습니다.${zeroScoreNote}`;
+  // ====================================================
 
-  <p style="margin:4px 0; font-size:14.5px;"><b>조건 필터링:</b> 국가, 시기, 등급 데이터를 기반으로 1차 후보군 ${candidateCount}개를 추출하였습니다.</p>
-  <p style="margin:4px 0; font-size:14.5px;"><b>성향 점수화:</b> 직업흥미유형(RIASEC) 적합도 ${best.riasec_score.toFixed(1)}점, 개인성향(Big5) 적합도 ${best.big5_score.toFixed(1)}점을 60:40 가중평균하여 최종 적합도 ${best.final_score}점을 산출하였습니다.</p>
-  <p style="margin:4px 0; font-size:14.5px;"><b>최종 선택:</b> 적합도 점수와 연봉순위를 종합하여 최적의 직업 1종을 선정하였습니다.${zeroScoreNote}</p>
-</div>
-`;
-
-  const buttons = `
-<div style="margin:12px 0 0 0; padding:0; background:#f8f9fa; border-radius:10px; border:1px solid #dee2e6; width:100%; box-sizing:border-box; overflow:hidden;">
-  <p style="margin:0; padding:10px 12px; font-size:17px; font-weight:bold; color:#333; line-height:1.4; background:#f1f5f9;">
-    💡 더 궁금한 점은 아래 AI 중 본인이 가입한 모델을 클릭해서 문의하세요
-  </p>
-  <div style="display:flex; flex-direction:column; gap:0;">
-    <a href="https://chat.openai.com" target="_blank" style="text-decoration:none; display:block;">
-      <button style="width:100%; padding:12px 16px; font-size:17px; font-weight:bold; background:#10a37f; color:white; border:none; border-radius:0; cursor:pointer; text-align:left; box-sizing:border-box; margin:0;">
-        💬 ChatGPT &nbsp;|&nbsp; <span style="font-weight:normal; font-size:15px;">창작 · 글쓰기 · 대화</span>
-      </button>
-    </a>
-    <a href="https://gemini.google.com" target="_blank" style="text-decoration:none; display:block;">
-      <button style="width:100%; padding:12px 16px; font-size:17px; font-weight:bold; background:#4285f4; color:white; border:none; border-radius:0; cursor:pointer; text-align:left; box-sizing:border-box; margin:0;">
-        ✨ Gemini &nbsp;|&nbsp; <span style="font-weight:normal; font-size:15px;">구글 연동 · 코딩</span>
-      </button>
-    </a>
-    <a href="https://claude.ai" target="_blank" style="text-decoration:none; display:block;">
-      <button style="width:100%; padding:12px 16px; font-size:17px; font-weight:bold; background:#d97706; color:white; border:none; border-radius:0; cursor:pointer; text-align:left; box-sizing:border-box; margin:0;">
-        🤖 Claude &nbsp;|&nbsp; <span style="font-weight:normal; font-size:15px;">심층 분석 · 문서 작성</span>
-      </button>
-    </a>
-    <a href="https://www.perplexity.ai" target="_blank" style="text-decoration:none; display:block;">
-      <button style="width:100%; padding:12px 16px; font-size:17px; font-weight:bold; background:#6366f1; color:white; border:none; border-radius:0; cursor:pointer; text-align:left; box-sizing:border-box; margin:0;">
-        🔎 Perplexity &nbsp;|&nbsp; <span style="font-weight:normal; font-size:15px;">정보검색 · 최신 요약</span>
-      </button>
-    </a>
-    <a href="https://grok.com" target="_blank" style="text-decoration:none; display:block;">
-      <button style="width:100%; padding:12px 16px; font-size:17px; font-weight:bold; background:#1d9bf0; color:white; border:none; border-radius:0; cursor:pointer; text-align:left; box-sizing:border-box; margin:0;">
-        ⚡ Grok &nbsp;|&nbsp; <span style="font-weight:normal; font-size:15px;">심층 질문 · 뉴스 분석</span>
-      </button>
-    </a>
-    <a href="https://chat.deepseek.com" target="_blank" style="text-decoration:none; display:block;">
-      <button style="width:100%; padding:12px 16px; font-size:17px; font-weight:bold; background:#e53e3e; color:white; border:none; border-radius:0; cursor:pointer; text-align:left; box-sizing:border-box; margin:0;">
-        🐋 DeepSeek &nbsp;|&nbsp; <span style="font-weight:normal; font-size:15px;">무료 · 코딩 · 논리 추론</span>
-      </button>
-    </a>
-  </div>
-</div>
-`;
+  const buttons = `<div style="margin-top:12px;padding:16px;background:#f8f9fa;border-radius:10px;border:1px solid #dee2e6;"><p style="margin:0 0 12px 0;font-size:14px;font-weight:bold;color:#333;line-height:1.6;">💡 미래 직업 선택과 관련하여 궁금한 점이 있으시면, 아래의 L.L.M. 모델 중 본인이 가입한 모델을 눌러 문의해 보세요.</p><div style="display:flex;flex-direction:column;gap:8px;"><a href="https://chat.openai.com" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#10a37f;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">💬 ChatGPT &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">창작 · 글쓰기 · 대화에 강함</span></button></a><a href="https://gemini.google.com" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#4285f4;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">✨ Gemini &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">구글 연동 · 코딩에 강함</span></button></a><a href="https://claude.ai" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#d97706;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">🤖 Claude &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">심층 분석 · 문서 작성에 강함</span></button></a><a href="https://www.perplexity.ai" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#6366f1;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">🔎 Perplexity &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">정보검색 · 최신 웹 요약에 강함</span></button></a><a href="https://grok.com" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#1d9bf0;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">⚡ Grok &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">심층 질문 · 뉴스 분석에 강함</span></button></a><a href="https://chat.deepseek.com" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#e53e3e;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">🐋 DeepSeek &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">무료 · 코딩 · 논리 추론에 강함</span></button></a></div></div>`;
 
   res.json({ text, buttons });
 });
