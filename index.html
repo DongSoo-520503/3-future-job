@@ -15,7 +15,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 24px 16px;
+            padding: 6px 10px; /* ← index_C.html처럼 축소 */
             position: relative;
             overflow-x: hidden;
         }
@@ -24,7 +24,7 @@
             content: '';
             position: fixed;
             top: -120px; left: -120px;
-            width: 420px; height: 420px;
+            width: 386px; height: 386px;
             background: radial-gradient(circle, rgba(255,183,213,0.55) 0%, transparent 70%);
             pointer-events: none;
         }
@@ -32,7 +32,7 @@
             content: '';
             position: fixed;
             bottom: -120px; right: -100px;
-            width: 400px; height: 400px;
+            width: 368px; height: 368px;
             background: radial-gradient(circle, rgba(165,214,255,0.5) 0%, transparent 70%);
             pointer-events: none;
         }
@@ -43,7 +43,7 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255,255,255,0.95);
             border-radius: 28px;
-            padding: 22px 44px 22px;
+            padding: 10px 16px 12px; /* ← index_C.html처럼 컴팩트 */
             width: 100%;
             max-width: 650px;
             box-shadow:
@@ -58,17 +58,16 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── 제목 박스 ── */
         .title-box {
             background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 55%, #93c5fd 100%);
             border-radius: 50px;
-            padding: 11px 36px;
+            padding: 7px 20px; /* ← 축소 */
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 7px;
             box-shadow: 0 6px 24px rgba(167,139,250,0.35);
         }
         .title-box h1 {
-            font-size: 24px;
+            font-size: 16px; /* ← index_C.html처럼 작게 */
             font-weight: 900;
             color: #fff;
             letter-spacing: -0.3px;
@@ -78,46 +77,35 @@
         .divider {
             height: 1.5px;
             background: linear-gradient(90deg, transparent, #c4b5fd, #93c5fd, transparent);
-            margin-bottom: 14px;
+            margin-bottom: 7px;
             border-radius: 2px;
         }
 
-        /* ── 폼 그룹 ── */
         .form-group {
-            margin-bottom: 11px;
+            margin-bottom: 6px; /* ← index_C.html처럼 타이트 */
         }
 
         label {
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 1px;
         }
         .label-main {
-            font-size: 14.5px;
+            font-size: 12px; /* ← index_C.html처럼 작게 */
             font-weight: 700;
             color: #2d2250;
             display: flex;
             align-items: center;
-            gap: 7px;
-            margin-bottom: 4px;
+            gap: 5px;
+            margin-bottom: 1px;
         }
         .label-main .icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 24px; height: 24px;
-            border-radius: 7px;
-            font-size: 13px;
+            width: 18px; height: 18px;
+            border-radius: 6px;
+            font-size: 11px;
             flex-shrink: 0;
-        }
-        .label-hint {
-            font-size: 12.5px;
-            font-weight: 400;
-            color: #7c6faa;
-            background: rgba(167,139,250,0.09);
-            border-left: 3px solid #c4b5fd;
-            padding: 3px 10px;
-            border-radius: 0 8px 8px 0;
-            line-height: 1.65;
         }
 
         .icon-name    { background: #fce7f3; }
@@ -127,18 +115,17 @@
         .icon-riasec  { background: #dcfce7; }
         .icon-big5    { background: #ffe4e6; }
 
-        /* ── 입력 요소 ── */
         input[type="text"],
         input[type="date"],
         select {
             width: 100%;
-            padding: 9px 17px;
+            padding: 7px 11px; /* ← index_C.html처럼 작게 */
             background: rgba(245,243,255,0.7);
             border: 1.5px solid #ddd6fe;
-            border-radius: 12px;
+            border-radius: 10px;
             color: #2d2250;
             font-family: 'Noto Sans KR', sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
             outline: none;
             -webkit-appearance: none;
@@ -161,18 +148,17 @@
             box-shadow: 0 0 0 3.5px rgba(167,139,250,0.18);
         }
 
-        /* ── 버튼 ── */
         .submit-btn {
             width: 100%;
-            padding: 12px;
-            margin-top: 6px;
+            padding: 9px;
+            margin-top: 5px;
             background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 50%, #93c5fd 100%);
             background-size: 200% 200%;
             border: none;
             border-radius: 50px;
             color: #fff;
             font-family: 'Noto Sans KR', sans-serif;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             letter-spacing: 0.3px;
             cursor: pointer;
@@ -194,69 +180,29 @@
             opacity: 0.75;
         }
 
-        /* ── 모바일 대응 media query ── */
         @media (max-width: 600px) {
-            body {
-                padding: 16px 12px;
-            }
-
-            .card {
-                padding: 20px 24px;
-                border-radius: 20px;
-                max-width: 100%;
-                box-shadow: 0 4px 16px rgba(120,120,200,0.15);
-            }
-
-            .title-box {
-                padding: 10px 24px;
-            }
-            .title-box h1 {
-                font-size: 22px;
-            }
-
-            input[type="text"],
-            input[type="date"],
-            select {
-                font-size: 16px;
-                padding: 14px 16px;
-            }
-
-            .form-group {
-                margin-bottom: 20px;
-            }
-
-            .label-main {
-                font-size: 15px;
-            }
-            .label-hint {
-                font-size: 13px;
-            }
-
-            .submit-btn {
-                padding: 14px;
-                font-size: 17px;
-            }
-
-            select {
-                padding-right: 40px;
-            }
+            body { padding: 6px 8px; }
+            .card { padding: 10px 14px 12px; border-radius: 18px; }
+            .title-box { padding: 7px 14px; }
+            .title-box h1 { font-size: 16px; }
+            input[type="text"], select { font-size: 13px; padding: 7px 10px; }
+            .form-group { margin-bottom: 6px; }
+            .label-main { font-size: 12px; }
+            .submit-btn { padding: 9px; font-size: 14px; }
+            select { padding-right: 36px; }
         }
 
         @media (max-width: 380px) {
-            .card {
-                padding: 16px 20px;
-            }
+            .card { padding: 8px 12px 10px; }
         }
     </style>
 </head>
 <body>
     <div class="card">
 
-        <!-- 제목 박스 -->
         <div class="title-box">
             <h1>미래 직업 추천 시스템</h1>
         </div>
-        <p style="text-align:center; font-size:13px; color:#9189b0; margin-bottom:12px; margin-top:-4px;">RIASEC × Big 5 기반 AI 직업 적합도 분석</p>
 
         <div class="divider"></div>
 
@@ -274,19 +220,17 @@
             <div class="form-group">
                 <label>
                     <div class="label-main">
-                        <span class="icon icon-dob">📅</span> 생년월일
+                        <span class="icon icon-dob">📅</span> 출생연도 (2000 ~ 2029 범위내)
                     </div>
-                    <div class="label-hint">생년월일을 직접 입력하면, 25세 무렵의 고소득 유망 직업을 추천합니다.</div>
                 </label>
-                <input type="text" id="dob" placeholder="예) 2010-03-15  (YYYY-MM-DD)" pattern="\d{4}-\d{2}-\d{2}" required>
+                <input type="text" id="dob" placeholder="예) 2010 (YYYY)" pattern="\d{4}" required>
             </div>
 
             <div class="form-group">
                 <label>
                     <div class="label-main">
-                        <span class="icon icon-country">🌍</span> 국가 (22개국)
+                        <span class="icon icon-country">🌍</span> 취업 국가 (22개국)
                     </div>
-                    <div class="label-hint">국적이 아니라, 미래에 취업할 국가를 의미합니다.</div>
                 </label>
                 <select id="country">
                     <option value="대한민국">대한민국</option>
@@ -301,7 +245,6 @@
                     <option value="이탈리아">이탈리아</option>
                     <option value="캐나다">캐나다</option>
                     <option value="호주">호주</option>
-
                     <option value="멕시코">멕시코</option>
                     <option value="베트남">베트남</option>
                     <option value="브라질">브라질</option>
@@ -310,7 +253,6 @@
                     <option value="싱가포르">싱가포르</option>
                     <option value="이스라엘">이스라엘</option>
                     <option value="인도네시아">인도네시아</option>
-
                     <option value="나이지리아">나이지리아</option>
                     <option value="남아프리카공화국">남아프리카공화국</option>
                 </select>
@@ -319,14 +261,13 @@
             <div class="form-group">
                 <label>
                     <div class="label-main">
-                        <span class="icon icon-ability">⭐</span> 지능/성적/노력
+                        <span class="icon icon-ability">⭐</span> 예정 학업 수준
                     </div>
-                    <div class="label-hint">상 중 하 구분은 향후 석사 및 박사 이상 공부, 학사 및 석사 이하 공부, 고졸 및 전문대 수준의 공부가 가능한지를 기준으로 삼지만, 어느 것을 선택하더라도 사회적 명예가 다르고 직업이 달라질지언정, 고소득 직업을 추천해 드립니다. 이 직업은 최종 목표이며 많은 노력이 필요합니다.</div>
                 </label>
                 <select id="ability">
-                    <option value="상">상</option>
-                    <option value="중">중</option>
-                    <option value="하">하</option>
+                    <option value="상">대학원 또는 박사 과정 학업 예정</option>
+                    <option value="중">대학교 또는 대학원 과정 학업 예정</option>
+                    <option value="하">실업고 또는 전문대 이하 학업 예정</option>
                 </select>
             </div>
 
@@ -335,7 +276,6 @@
                     <div class="label-main">
                         <span class="icon icon-riasec">🧩</span> 직업흥미유형 (RIASEC)
                     </div>
-                    <div class="label-hint">청소년들이 선택하기 어려우면, 부모나 선생님들의 도움을 받아 선택합니다.</div>
                 </label>
                 <select id="riasec">
                     <option value="R">🔧 만들고 조작하는 걸 좋아해요 — 기계·컴퓨터·도구를 직접 다루거나 만드는 것이 재미있는 편이에요</option>
@@ -352,7 +292,6 @@
                     <div class="label-main">
                         <span class="icon icon-big5">🧠</span> 개인성향 (Big 5)
                     </div>
-                    <div class="label-hint">본인이 선택할 수 있으나, 이 항목도 부모나 선생님들의 도움을 받아 선택합니다.</div>
                 </label>
                 <select id="big5">
                     <option value="O">🌈 새로운 것에 호기심이 많아요 — 새 아이디어나 변화를 즐기고 상상력이 풍부한 편이에요</option>
@@ -377,8 +316,8 @@
     btn.classList.add('loading');
 
     const formData = {
-      name:    document.getElementById('name').value,
-      dob:     document.getElementById('dob').value,
+      name:    document.getElementById('name').value.trim(),
+      dob:     document.getElementById('dob').value.trim(),
       country: document.getElementById('country').value,
       ability: document.getElementById('ability').value,
       riasec:  document.getElementById('riasec').value.charAt(0),
