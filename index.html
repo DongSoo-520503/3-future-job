@@ -470,7 +470,21 @@
 <body>
 <div class="card">
   <div class="title-box"><h2>🌏 미래직업 추천결과</h2></div>
-  <pre>${data.text}</pre>
+  <pre>1. 출력 결과
+
+성명: ${data.text.match(/성명: (.*?)\n/)?.[1] || ''} / 국가: ${data.text.match(/국가: (.*?)\n/)?.[1] || ''} / 취업시기: ${data.text.match(/취업시기: (.*?)\n/)?.[1] || ''}
+추천직업: ${data.text.match(/추천직업: (.*?)\n/)?.[1] || ''}
+연봉순위: ${data.text.match(/연봉순위: (.*?)\n/)?.[1] || ''}
+
+직업해설: ${data.text.match(/직업해설: ([\s\S]*?)(?=\n핵심 전문지식:|\n추천 학과\/전공:|$)/)?.[1]?.trim() || ''}
+
+핵심 전문지식: ${data.text.match(/핵심 전문지식: (.*?)(?=\n추천 학과\/전공:|\n준비 기간:|$)/)?.[1]?.trim() || ''}
+추천 학과/전공: ${data.text.match(/추천 학과\/전공: (.*?)(?=\n준비 기간:|$)/)?.[1]?.trim() || ''}
+준비 기간: ${data.text.match(/준비 기간: ([\s\S]*?)$/s)?.[1]?.trim() || ''}
+
+조건 필터링: ${data.text.match(/조건 필터링: (.*?)\n/)?.[1] || ''}
+성향 점수화: ${data.text.match(/성향 점수화: (.*?)\n/)?.[1] || ''}
+최종 선택: ${data.text.match(/최종 선택: (.*?)$/)?.[1] || ''}</pre>
   <div class="divider"></div>
   <div class="buttons-container">
     ${data.buttons}
